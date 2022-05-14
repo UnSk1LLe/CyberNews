@@ -1,0 +1,102 @@
+      * {
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+      }
+
+.imageTL {
+    height: 360px;
+    border-color: black;
+    border-width: 2px;
+    border-radius: 25px;
+    border-style: solid;
+}
+
+.timelineGrid {
+    position: relative;
+    padding-top: 4%;
+    padding-right: 4%;
+    padding-left: 2%;
+    padding-bottom: 2%;
+    display: grid;
+    grid-template-columns: 640px 20px 640px;
+    grid-gap: 4em;
+    grid-row-gap: 4em;
+    justify-content: center;
+    max-width: 1920px;
+}
+
+.textcontent {
+    position: relative;
+    margin-top: 5%; /* Отступ сверху */
+    color: azure;    
+    justify-items: center;
+    text-align: center;
+    width: 100%;
+    height: 80px;
+    font-size: 30px;    
+    float: left;
+}
+
+.contentGrid {
+    display: grid;
+    margin-top: 40px;
+    grid-template-columns: 100%;
+    justify-content: center;
+    overflow: hidden;
+    align-items: center;
+    width: 640px;
+    height: 360px;
+    justify-items: center;
+    text-align: center;
+    font-size: 30px;
+    color: azure;
+    border-width: 2px;
+    border-radius: 25px;
+}
+
+.timeline {
+    background-color: grey;
+    background-size: cover;
+    display: block;
+    background-color: grey;
+    border-width: 5px;
+    border-radius: 5px;
+    height: 100%;
+    border-color: black;
+    overflow: hidden;
+    display: none;
+    z-index: 100;
+}
+
+.col {
+    overflow: hidden;
+    border-color: black;
+    border-width: 2px;
+    border-radius: 25px;
+    border-style: solid;
+    height: 100%;
+    width: 100%;
+    align-items: center;
+    background-color: black;
+}
+
+.emptyBox {
+    width: 600px;
+}
+
+.timelinedots {
+    display: grid;
+    grid-row-gap: 224px;
+    position: absolute;
+    left: 804px;
+    top: 180px;
+    z-index: 1000;
+    font-size: 120px;
+    color: #0dcaf0;
+    text-shadow: darkgrey 0 0 1px;
+}
+
