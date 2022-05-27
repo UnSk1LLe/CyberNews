@@ -27,7 +27,7 @@ warn.style.display = "none";
 warn.innerHTML = "CapsLock включен!";
 warn.style.color = "orange";
 warning.style.marginLeft = "17px"
-input.addEventListener("keyup", function(event) {
+input.addEventListener("keyup", function(event) { //Checking for "CapsLock"
   if (event.getModifierState("CapsLock")) {
     warning.style.display = "block";
   } else {
@@ -35,7 +35,7 @@ input.addEventListener("keyup", function(event) {
   }
 })
 
-function changeColor(st) {
+function changeColor(st) { //Changing Scroll Up Button's color
   if(st == 1) {
     document.getElementById("scrollTop").style.backgroundColor = "lightgrey"
     document.getElementById("scrollTop").style.color = "grey"
@@ -73,9 +73,9 @@ window.onscroll = function() {scrollFunction()};
 
 function scrollFunction() {
   if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
-    scrlTop.style.display = "block";
+    scrlTop.style.display = "block"; //Display button if user scrolls down
   } else {
-    scrlTop.style.display = "none";
+    scrlTop.style.display = "none"; //Hide button if at the top of page
   }
 }
 
