@@ -9,7 +9,7 @@ var descr = document.getElementById('mainDescr');
 descr.style.marginLeft = "38%";
 descr.style.fontSize = "25px";
 
-var gender = document.getElementById('gender');
+/*var gender = document.getElementById('gender');
 gender.style.marginLeft = "48%";
 gender.style.fontWeight = "bold";
 gender.style.fontSize = "18px";
@@ -20,12 +20,12 @@ man.style.marginRight = "1%";
 var woman = document.getElementById('woman');
 woman.style.marginLeft = "2%";
 woman.style.marginRight = "1%";
-
+*/
 var pass = document.getElementById('password');
 pass.type = "password";
 pass.style.width = "78%";
 
-var lg = document.getElementById('dLogin');
+/*var lg = document.getElementById('dLogin');
 lg.style.fontWeight = "bold";
 lg.style.fontSize = "18px";
 
@@ -39,7 +39,7 @@ bday.style.fontSize = "18px";
 
 var mail = document.getElementById('dEmail');
 mail.style.fontWeight = "bold";
-mail.style.fontSize = "18px";
+mail.style.fontSize = "18px";*/
 
 var shPass = document.getElementById('showPass');
 shPass.style.width = "10%";
@@ -48,13 +48,13 @@ shPass.style.marginLeft = "5px";
 shPass.style.marginTop = "5px";
 shPass.style.backgroundColor = "lightgrey"
 
-var fn = document.getElementById('dName');
+/*var fn = document.getElementById('dName');
 fn.style.fontWeight = "bold";
 fn.style.fontSize = "18px";
 
 var ln = document.getElementById('dSurname');
 ln.style.fontWeight = "bold";
-ln.style.fontSize = "18px";
+ln.style.fontSize = "18px";*/
 
 var popup = document.getElementById("myPopup");
 popup.style.fontSize = "14px";
@@ -76,16 +76,16 @@ $('#name').on('input', function() {
     $(this).val($(this).val().replace(/[1234567890!@#$%^&*()_"'`~/|=<>?.,\\№;:*+\][{}]/, ''))
 });*/
 
-var em = document.getElementById('email');
+/*var em = document.getElementById('email');
 em.addEventListener('input', function a() {
 	var n = em.value.length;
 	if(n >= 5) {
 		for(var i = 0; i < n; i++) {
-			/*if(em.value[i] == '@')
+			if(em.value[i] == '@')
 			{
 				email.style.backgroundColor = "#e6f9ff"
 				return(true)
-			}*/
+			}
 			if(em.value.includes('@mail.ru') || em.value.includes('@gmail.com') || em.value.includes('@astanait.edu.kz')){
 				email.style.backgroundColor = "#e6f9ff"
 				return(true)
@@ -100,7 +100,7 @@ lg.addEventListener('input', function a() {
 	if(lg.length > 3 && lg.value != "test")
 		return(true)
 	return(false)
-})
+})*/
 
 
 function isUpper(symbol) {
@@ -115,10 +115,10 @@ function isDigit(symbol) {
 	return(symbol >= '0' && symbol <= '9')
 }
 
-function isLeapYear() {
+/*function isLeapYear() {
 	let year = document.getElementById('yDate');
     return((year % 4 == 0) && (year % 100 != 0) || (year % 400 == 0));
-}
+}*/
 
 function showPassword(action) {
 	if(action == 1) pass.type = "text"
@@ -236,13 +236,13 @@ for (i = 0; i < close.length; i++) {
   }
 }
 
-var registrate = document.getElementById('registrate');
+/*var registrate = document.getElementById('registrate');
 registrate.innerHTML = "Зарегистрироваться";
 registrate.style.backgroundColor = "blue";
 registrate.style.width = "34%";
 registrate.style.position = "relative";
 registrate.style.left = "34%";
-registrate.style.borderRadius = "10px"
+registrate.style.borderRadius = "10px"*/
 
 var st = document.getElementById('passwordStatus');
 st.style.fontSize = "15px"
@@ -252,6 +252,6 @@ st.style.marginLeft = "-15px"
 var acc =  document.getElementById('haveAcc');
 acc.style.marginLeft = "38%"
 
-var month = document.getElementById('mDate');
+/*var month = document.getElementById('mDate');
 month.style.height = "51px";
-month.style.marginTop = "8px";
+month.style.marginTop = "8px";*/

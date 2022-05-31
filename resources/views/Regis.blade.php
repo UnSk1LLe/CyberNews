@@ -42,14 +42,15 @@
 
         <div>
             <x-jet-label for="email" value="{{ __('Пароль') }}" style="font-size: 18px"/>
+        </div>
 
             <x-jet-input type="text" maxlength="25" id="password" name="password" placeholder="Введите пароль" oninput="passwordComplexityCheck()" required>
-                <button type="button" class="btn btn-light" id="showPass" onmousedown="showPassword(1)" onmouseup="showPassword(0)">
-                    <img src="eye-icon.png" style="width: 100%;"></button>
-                <button type="button" class="btn btn-light popup" style="width: 10%; height: 55px; margin-left: 1%; margin-top: 5px; background-color: lightgrey; font-size: 20px;" onmouseover="showInfo(1)" onmouseout="showInfo(0)">?
-
-                    <span class="popuptext" id="myPopup">
-                </span></button></x-jet-input>
+                </x-jet-input>
+            <button type="button" class="btn btn-light" id="showPass" onmousedown="showPassword(1)" onmouseup="showPassword(0)">
+                <img src="eye-icon.png" style="width: 100%"></button>
+            <button type="button" class="btn btn-light popup" style="width: 10%; height: 55px; margin-left: 1%; margin-top: 5px; background-color: lightgrey; font-size: 20px;" onmouseover="showInfo(1)" onmouseout="showInfo(0)">?
+                <span class="popuptext" id="myPopup">
+                </span></button>
 
             <warning id="warn"></warning>
             <div class="row">
@@ -85,9 +86,10 @@
         <label class="form-check-label" for="flexSwitchCheckChecked">Получать рассылки с новостями</label>
     </div>
     <div>
-        <x-jet-button class="ml-4">
+        <x-jet-button id="registrate" class="btn btn-primary" style="margin-top: 30px; margin-bottom: 30px; height: 60px">
             {{ __('Зарегистрироваться') }}
         </x-jet-button>    </div>
+            <a id="haveAcc" href="/MainPage">Уже есть аккаунт?</a>
 </form>
 
 <script src="jQuery-3.6.0.js"></script>

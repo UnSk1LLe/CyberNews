@@ -59,8 +59,9 @@
                                     <x-jet-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus />
 
                             <label for="psw"><b>Пароль</b></label>
+                                    <warning id="warn"></warning>
                                     <x-jet-input id="password" class="block mt-1 w-full" type="password" name="password" required autocomplete="current-password" />
-                            <warning id="warn"></warning>
+
 
                             <button type="submit" style="background-color: blue">Войти</button>
                             <label>
@@ -179,6 +180,9 @@
 
 </div>
 
+<div>
+    @livewire('comms')
+</div>
 
 </div>
 
