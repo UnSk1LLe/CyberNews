@@ -32,17 +32,34 @@
                 <div id="id01" class="modal">
 
                     <form class="modal-content animate" action="#" method="post" style="width: 40%;" >
+                        <x-jet-authentication-card>
+                            <x-slot name="logo">
+
+                            </x-slot>
                         <div class="imgcontainer">
                             <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
                         </div>
 
                         <div class="container">
 
-                            <label for="uname"><b>Логин</b></label>
-                            <input type="text" maxlength="20" placeholder="Введите имя пользователя" name="uname" required>
+
+                                <x-jet-validation-errors class="mb-4" />
+
+                                @if (session('status'))
+                                    <div class="mb-4 font-medium text-sm text-green-600">
+                                        {{ session('status') }}
+                                    </div>
+                                @endif
+
+                                <!---Routing to login page--->
+                                <form method="POST" action="{{ route('login') }}">
+                                    @csrf
+
+                            <label for="email"><b>Логин</b></label>
+                                    <x-jet-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus />
 
                             <label for="psw"><b>Пароль</b></label>
-                            <input type="password" maxlength="25" id="password" placeholder="Введите пароль" name="psw" required>
+                                    <x-jet-input id="password" class="block mt-1 w-full" type="password" name="password" required autocomplete="current-password" />
                             <warning id="warn"></warning>
 
                             <button type="submit" style="background-color: blue">Войти</button>
@@ -51,14 +68,21 @@
                                 <label class="form-check-label" for="flexCheckDefault">
                                     Запомнить меня
                                 </label>
-                                <span class="psw"><a href="#" style="margin-left: 280px;">Забыли пароль?</a></span>
+                                @if (Route::has('password.request'))
+                                <span class="psw"><a href="{{ route('password.request') }}" style="margin-left: 280px;">Забыли пароль?</a></span>
+                                @endif
                             </label>
-                        </div>
+
+
 
                         <div class="container" style="background-color:#f1f1f1">
                             <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn" style="background-color: indianred;">Назад</button>
                         </div>
                         <span class="psw">Ещё нет аккаунта?<a href="/Regis" style="margin-left: 1%;">Создайте</a></span>
+
+                                </form>
+                        </div>
+                        </x-jet-authentication-card>
                     </form>
                 </div>
 

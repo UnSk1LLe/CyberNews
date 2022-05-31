@@ -72,9 +72,9 @@ $('#name').on('input', function() {
     $(this).val($(this).val().replace(/[1234567890!@#$%^&*()_"'`~/|=<>?.,\\№;:*+\][{}]/, ''))
 });
 
-$('#surname').on('input', function() {
+/*$('#surname').on('input', function() {
     $(this).val($(this).val().replace(/[1234567890!@#$%^&*()_"'`~/|=<>?.,\\№;:*+\][{}]/, ''))
-});
+});*/
 
 var em = document.getElementById('email');
 em.addEventListener('input', function a() {

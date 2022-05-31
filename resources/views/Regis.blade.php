@@ -11,39 +11,44 @@
 
 <body class="background-object">
 <form class="row g-2" id="regForm">
+<x-jet-authentication-card>
+    <x-slot name="logo">
+
+    </x-slot>
+
+    <x-jet-validation-errors class="mb-4" />
+
+    <form method="POST" action="{{ route('register') }}">
+        @csrf
+
     <descr id="mainDescr">Регистрация</descr>
     <div>
-        <descr id="dLogin">Логин</descr>
-        <div>
-            <input type="text" maxlength="20" id="login" placeholder="Введите логин" required>
-        </div>
 
         <div class="row">
 
-            <div class="col">
-                <descr id="dSurname">Имя</descr>
-                <div>
-                    <x-jet-input type="text" maxlength="20" id="surname" placeholder="Введите фамилию" :value="old('name')" required autofocus autocomplete="name"/>
-                </div>
-            </div>
-
-            <div class="col">
-                <descr id="dName">Имя</descr>
-                <div>
-                    <input type="text" maxlength="20" id="name" placeholder="Введите имя" required>
-                </div>
+            <div>
+                <x-jet-label for="name" value="{{ __('Имя пользователя') }}" style="font-size: 18px"/>
+                <x-jet-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" style="font-size: 18px"/>
             </div>
         </div>
 
+        <div class="mt-4">
+            <x-jet-label for="email" value="{{ __('Email') }}" style="font-size: 18px"/>
+            <x-jet-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required style="font-size: 18px"/>
+        </div>
 
     </div>
     <div>
-        <descr id="dPassword">Пароль</descr>
+
         <div>
+            <x-jet-label for="email" value="{{ __('Пароль') }}" style="font-size: 18px"/>
 
-            <x-jet-input type="text" maxlength="25" id="password" name="password" placeholder="Введите пароль" oninput="passwordComplexityCheck()" required><button type="button" class="btn btn-light" id="showPass" onmousedown="showPassword(1)" onmouseup="showPassword(0)"><img src="eye-icon.png" style="width: 100%;"></button><button type="button" class="btn btn-light popup" style="width: 10%; height: 55px; margin-left: 1%; margin-top: 5px; background-color: lightgrey; font-size: 20px;" onmouseover="showInfo(1)" onmouseout="showInfo(0)">?
+            <x-jet-input type="text" maxlength="25" id="password" name="password" placeholder="Введите пароль" oninput="passwordComplexityCheck()" required>
+                <button type="button" class="btn btn-light" id="showPass" onmousedown="showPassword(1)" onmouseup="showPassword(0)">
+                    <img src="eye-icon.png" style="width: 100%;"></button>
+                <button type="button" class="btn btn-light popup" style="width: 10%; height: 55px; margin-left: 1%; margin-top: 5px; background-color: lightgrey; font-size: 20px;" onmouseover="showInfo(1)" onmouseout="showInfo(0)">?
 
-                <span class="popuptext" id="myPopup">
+                    <span class="popuptext" id="myPopup">
                 </span></button></x-jet-input>
 
             <warning id="warn"></warning>
@@ -59,62 +64,35 @@
             </div>
         </div>
     </div>
-    <div>
-        <descr id="gender">Пол</descr>
-        <div>
-            <descr><input class="form-check-input" id="man" type="radio" onclick="radioCheck(1)">Мужской</descr>
-            <descr><input class="form-check-input" id="woman" type="radio" onclick="radioCheck(0)">Женский</descr>
-        </div>
-    </div>
-    <div>
-        <descr id="dBirthday">Дата Рождения</descr>
-        <div class="row g-1">
-            <div class="col">
-                <input type="number" maxlength="2" id="dDate" placeholder="День">
-            </div>
-            <div class="col">
-                <select class="form-select" id="mDate" style="width: inherit;">
-                    <option selected id="m0">Месяц</option>
-                    <option id="m1">Январь</option>
-                    <option id="m2">Февраль</option>
-                    <option id="m3">Март</option>
-                    <option id="m4">Апрель</option>
-                    <option id="m5">Май</option>
-                    <option id="m6">Июнь</option>
-                    <option id="m7">Июль</option>
-                    <option id="m8">Август</option>
-                    <option id="m9">Сентябрь</option>
-                    <option id="m10">Октябрь</option>
-                    <option id="m11">Ноябрь</option>
-                    <option id="m12">Декабрь</option>
-                </select>
-            </div>
-            <div class="col">
-                <input type="number" maxlength="4" id="yDate"placeholder="Год">
-            </div>
-        </div>
-    </div>
     </div>
 
-
-    <div>
-        <descr id="dEmail" required>Адрес элетронной почты</descr>
-        <div>
-            <input type="text" maxlength="35" id="email" placeholder="Email...">
-        </div>
+    <div class="mt-4">
+        <x-jet-label for="password_confirmation" value="{{ __('Подтвердите пароль') }}" style="font-size: 18px"/>
+        <x-jet-input id="password_confirmation" class="block mt-1 w-full" type="password" name="password_confirmation" required autocomplete="new-password" style="font-size: 18px"/>
     </div>
+
+    @if (Laravel\Jetstream\Jetstream::hasTermsAndPrivacyPolicyFeature())
+        <div class="mt-4">
+            <x-jet-label for="terms">
+                <div class="flex items-center">
+
+                </div>
+            </x-jet-label>
+        </div>
+    @endif
     <div class="form-check form-switch">
         <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" checked>
         <label class="form-check-label" for="flexSwitchCheckChecked">Получать рассылки с новостями</label>
     </div>
     <div>
-        <button id="registrate" onclick="isFilled()"></button><a id="haveAcc" href="/MainPage">Уже есть аккаунт?</a>
-    </div>
+        <x-jet-button class="ml-4">
+            {{ __('Зарегистрироваться') }}
+        </x-jet-button>    </div>
 </form>
 
 <script src="jQuery-3.6.0.js"></script>
 <script src="regisJS.js"></script>
-</body>
+</x-jet-authentication-card></form></body>
 
 
 
