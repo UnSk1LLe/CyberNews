@@ -28,10 +28,10 @@
                     <span class="popuptext" id="myPopup">
                 </span></button>
                     <div class="row">
-                    <div class="col-auto">
+
                         <div class="progress passInd">
                             <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuemin="0" aria-valuemax="100" id="passwordIndicator" style="width: 0%;"></div>
-                        </div>
+
                     </div>
                     <div class="col-auto">
                         <div id="passwordStatus">Нет пароля</div>

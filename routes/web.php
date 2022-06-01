@@ -38,6 +38,21 @@ Route::get('/User/{id}', function ($id) {
     return view('User ID: '.$id);
 });
 
+Route::get('/index', function () {
+    return view('index');
+});
+
+Route::get('/comms', function () {
+    return view('comms');
+});
+
+Route::get('/comment', function () {
+    return view('comment');
+});
+
+Route::post('/add_comment', function () {
+    return view('add_comment');
+});
 
 Route::middleware([
     'auth:sanctum',

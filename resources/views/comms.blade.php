@@ -17,9 +17,30 @@ if(isset($_GET['submit'])){
     $name = $_GET['name'];
     $email = $_GET['email'];
     $comment = $_GET['comment'];
+    if($_FILES["image"]["error"] === 4) {
+        echo "<script> alert('Image does not exist'); </script>";
+    } else {
+        $fileName = $_FILES["image"]["name"];
+        $filesize = $_FILES["image"]["size"];
+        $tmpName = $_FILES["image"]["tmp_name"];
 
-    $sql = "INSERT INTO comments (name, email, comment)
-    VALUES ('$name', '$email', '$comment')";
+        $validImageExtension = ['jpg', 'jpeg', 'png'];
+        $imageExtension = explode('.', $fileName);
+        $imageExtension = strtolower(end($imageExtension));
+        /*if(!in_array($imageExtension, $validImageExtension)){
+            echo "<script> alert('Invalid Image Extension'); </script>";
+        } else if($filesize > 1000000) {
+            echo "<script> alert('Image size is too large'); </script>";
+        } else {*/
+            $newImageName = uniqid();
+            $newImageName .= '.' . $imageExtension;
+
+            move_uploaded_file($tmpName, 'img/' . $newImageName);
+       // }
+    }
+
+    $sql = "INSERT INTO comments (name, email, comment, image)
+    VALUES ('$name', '$email', '$comment', '$newImageName')";
 
     $result = mysqli_query($conn, $sql);
     if($result) {
@@ -42,9 +63,9 @@ if(isset($_GET['submit'])){
 
     <form action="" method="GET" style="margin-left: 20%; border-color: transparent" enctype="multipart/form-data">
 
-        <div class="row" style="width: 100%">
+        <div class="row" style="width: 100%; background-color: transparent">
 
-            <div class="col">
+            <div class="col" style="background-color: transparent; border-color: transparent">
         <div>
             <label for="name" class="description-header">Никнейм</label>
         </div>
@@ -53,7 +74,7 @@ if(isset($_GET['submit'])){
         </div>
         </div>
 
-            <div class="col">
+            <div class="col" style="background-color: transparent; border-color: transparent">
         <div>
             <label for="email" class="description-header">Email</label>
         </div>
@@ -71,6 +92,10 @@ if(isset($_GET['submit'])){
         </div>
         <div>
             <button class="btn btn-info" name='submit' style="width: 25%; margin-right: 0px">Отправить</button>
+                <input type="file" name="image" accept=".jpg, .jpeg, .png" value="" class="btn btn-secondary" style="height: 40px">
+
+
+
         </div>
             </div>
         <div class="border-line"></div>
@@ -87,7 +112,7 @@ if(isset($_GET['submit'])){
         ?>
             <div class="container" style="align-self: center">
                 <div class="row">
-                    <div class="col">
+                    <div class="col"style="background-color: transparent; border-color: transparent">
                         <a class="avatar"><img src="user-icon.png" class="avatar"></a>
                         <a class="user-comment-text"><?php echo $row['name']; ?></a>
                     </div>
@@ -100,28 +125,17 @@ if(isset($_GET['submit'])){
                 <button class="btn btn-danger like-btn" name='dislike'><img class="like-img" src="dislike.png"></button>
                     <p class="like-count"><?php echo $row['dislikes']; ?></p>
                 <p class="comment-add-info"><?php echo $row['date']; ?></p>
-                    <button class="btn btn-light" name="reply" style="width: 100px; height: 40px; margin: 4px" onclick="ShowReply()">Ответить</button>
+                    <button class="btn btn-light" name="reply" style="width: 100px; height: 40px; margin: 4px" onclick="">Ответить</button>
                 </div>
-                <div id="reply-block">
-                    <textarea class="textarea" id="reply-text" name="reply-text" placeholder="Напишите ваш ответ..." required style="display: none"></textarea>
 
                 </div>
-                <div class="border-line"></div>
-            </div>
-            <script>
-                function ShowReply() {
-                    let a = document.getElementById('reply-block');
-                    if(a.style.display == "none") {
-                        a.style.display == "block";
-                    } else {
-                        a.style.display == "none";
-                    }
-                }
-            </script>
-        <?php
+                <div class="border-line" style="width: 76%; margin-left: 12%"></div>
+            <?php
             }
-        }
-        ?>
+            }
+            ?>
+            </div>
+
 
 
 

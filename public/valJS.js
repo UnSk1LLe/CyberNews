@@ -8,10 +8,10 @@ window.onclick = function(event) {
     }
 }
 
-let rg = document.getElementById('logIn')
+/*let rg = document.getElementById('logIn')
 rg.style.fontSize="14px"
 rg.style.padding="1%"
-rg.style.color="cyan"
+rg.style.color="cyan"*/
 
 var mainRef = document.querySelector("#mainRef");
 mainRef.style.marginLeft = "40px";

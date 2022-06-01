@@ -28,21 +28,28 @@
                 <a class="nav_link" href="/CSGO">CS:GO</a>
                 <a class="nav_link" href="/Dota2">DOTA 2</a>
                 <a class="nav_link" href="/VAL">VALORANT</a>
-                <a class="nav_link" id="logIn" onclick="document.getElementById('id01').style.display='block'" style="width:auto;">ВОЙТИ</a>
+                @guest
+                    @if (Route::has('login'))
+                        <a id="show-login" href="#" onclick="document.getElementById('id01').style.display='block'" >{{ ('Войти') }}</a>
+                    @endif
+
+                @else
+                    <a href="/user/profile">{{ Auth::user()->name }}</a>
+                @endguest
 
                 <div id="id01" class="modal">
 
                     <form class="modal-content animate" action="#" method="post" style="width: 40%;" >
-                        <div class="imgcontainer">
-                            <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
-                        </div>
+                        <x-jet-authentication-card>
+                            <x-slot name="logo">
 
-                        <div class="container">
+                            </x-slot>
+                            <div class="imgcontainer">
+                                <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
+                            </div>
 
-                            <x-jet-authentication-card>
-                                <x-slot name="logo">
+                            <div class="container">
 
-                                </x-slot>
 
                                 <x-jet-validation-errors class="mb-4" />
 
@@ -56,43 +63,37 @@
                                 <form method="POST" action="{{ route('login') }}">
                                     @csrf
 
-                                    <div class="mt-4">
-                                        <!---Login input--->
-                                        <x-jet-label for="email" value="{{ __('Логин') }}" />
-                                        <x-jet-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus />
+                                    <x-jet-label  for="email" value="{{ __('Email') }}"/>
+                                    <x-jet-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus />
+
+                                    <x-jet-label for="password" value="{{ __('Пароль') }}" />
+                                    <warning id="warn"></warning>
+                                    <x-jet-input id="password" class="block mt-1 w-full" type="password" name="password" required autocomplete="current-password" />
+
+
+                                    <button type="submit" style="background-color: blue">Войти</button>
+                                    <label>
+                                        <label for="remember_me" class="flex items-center">
+                                            <x-jet-checkbox id="remember_me" name="remember" />
+                                            <span class="ml-2 text-sm text-gray-600">{{ __('Запомнить меня') }}</span>
+                                        </label>
+                                        @if (Route::has('password.request'))
+                                            <span class="psw"><a href="{{ route('password.request') }}" style="margin-left: 280px;">Забыли пароль?</a></span>
+                                        @endif
+                                    </label>
+
+
+
+                                    <div class="container" style="background-color:#f1f1f1">
+                                        <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn" style="background-color: indianred;">Назад</button>
                                     </div>
-                            <!---Password input--->
-                            <div class="mt-4">
-                                <x-jet-label for="password" value="{{ __('Пароль') }}" />
-                                <x-jet-input id="password" class="block mt-1 w-full" type="password" name="password" required autocomplete="current-password" />
+
+
+                                    <span class="psw">Ещё нет аккаунта?<a href="/Regis" style="margin-left: 1%;">Создайте</a></span>
+
+                                </form>
                             </div>
-
-                            <warning id="warn"></warning>
-
-                                <label for="remember_me" class="flex items-center">
-                                    <x-jet-checkbox id="remember_me" name="remember" />
-                                    <span class="ml-2 text-sm text-gray-600">{{ __('Запомнить меня') }}</span>
-                                </label>
-                                <div class="flex items-center justify-end mt-4">
-                                    @if (Route::has('password.request'))
-                                        <!---Routing to password request page--->
-                                        <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('password.request') }}">
-                                            {{ __('Забыли пароль?') }}
-                                        </a>
-                                    @endif
-
-                                    <!---Sign in--->
-                                    <x-jet-button class="ml-4">
-                                        {{ __('Войти') }}
-                                    </x-jet-button>
-                                </div>
-
-                                </form></x-jet-authentication-card></div>
-
-                        <div class="container" style="background-color:#f1f1f1">
-                            <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn" style="background-color: indianred;">Назад</button>
-                        </div>
-                        <span class="psw">Ещё нет аккаунта?<a href="/Regis" style="margin-left: 1%;">Создайте</a></span>
+                        </x-jet-authentication-card>
                     </form>
                 </div>
 

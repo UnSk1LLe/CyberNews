@@ -27,7 +27,14 @@
                 <a class="nav_link" href="/CSGO">CS:GO</a>
                 <a class="nav_link" href="/Dota2">DOTA 2</a>
                 <a class="nav_link" href="/VAL">VALORANT</a>
-                <a class="nav_link" id="logIn" onclick="document.getElementById('id01').style.display='block'" style="width:auto;">ВОЙТИ</a>
+                @guest
+                    @if (Route::has('login'))
+                        <a id="show-login" href="#" onclick="document.getElementById('id01').style.display='block'" >{{ ('Войти') }}</a>
+                    @endif
+
+                @else
+                    <a href="/user/profile">{{ Auth::user()->name }}</a>
+                @endguest
 
                 <div id="id01" class="modal">
 
@@ -55,19 +62,19 @@
                                 <form method="POST" action="{{ route('login') }}">
                                     @csrf
 
-                            <label for="email"><b>Логин</b></label>
+                                    <x-jet-label  for="email" value="{{ __('Email') }}"/>
                                     <x-jet-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus />
 
-                            <label for="psw"><b>Пароль</b></label>
+                                    <x-jet-label for="password" value="{{ __('Пароль') }}" />
                                     <warning id="warn"></warning>
                                     <x-jet-input id="password" class="block mt-1 w-full" type="password" name="password" required autocomplete="current-password" />
 
 
                             <button type="submit" style="background-color: blue">Войти</button>
                             <label>
-                                <input class="form-check-input" type="checkbox">
-                                <label class="form-check-label" for="flexCheckDefault">
-                                    Запомнить меня
+                                <label for="remember_me" class="flex items-center">
+                                    <x-jet-checkbox id="remember_me" name="remember" />
+                                    <span class="ml-2 text-sm text-gray-600">{{ __('Запомнить меня') }}</span>
                                 </label>
                                 @if (Route::has('password.request'))
                                 <span class="psw"><a href="{{ route('password.request') }}" style="margin-left: 280px;">Забыли пароль?</a></span>
@@ -79,6 +86,8 @@
                         <div class="container" style="background-color:#f1f1f1">
                             <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn" style="background-color: indianred;">Назад</button>
                         </div>
+
+
                         <span class="psw">Ещё нет аккаунта?<a href="/Regis" style="margin-left: 1%;">Создайте</a></span>
 
                                 </form>
@@ -180,9 +189,8 @@
 
 </div>
 
-<div>
-    @livewire('comms')
-</div>
+@include('.comms')
+
 
 </div>
 
